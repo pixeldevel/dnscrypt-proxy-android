@@ -12,9 +12,9 @@
  password = "changeme"
  
 --- Privacy level for the monitoring UI---
-0: show all details including client IPs
-1: anonymize client IPs (default)
-2: aggregate data only (no individual queries or domains shown)
+ - 0: show all details including client IPs
+ - 1: anonymize client IPs (default)
+ - 2: aggregate data only (no individual queries or domains shown)
 
  privacy_level = 1
 
