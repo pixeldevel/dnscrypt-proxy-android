@@ -1,15 +1,74 @@
 # Changelog
 
-## unreleased
-### Changed
-- `dct-nl1` name resolver to `dct-nl`.
-- `dct-ru1` name resolver to `dct-ru`.
-- Optimized relays.
+## 2.1.13
+### Upstream
+ - Fixed race conditions in WebSocket handling for the monitoring dashboard, improving stability and preventing potential crashes.
+ - Manual configuration reload via SIGHUP is now supported regardless of the hot-reload setting, providing more flexibility for system administrators.
+ - Fixed a regression in IP prefix matching for allow/block lists that could cause incorrect filtering behavior.
+ - The monitoring dashboard now properly displays blocked queries counter and tracks blocked queries in the UI.
+ - Improved error handling in the cache plugin initialization.
+ - Enhanced the forward plugin to return the last valid response when encountering only errors, improving resilience.
+ - Fixed various UI issues including scrolling behavior, WebSocket reconnection handling, and response time calculations.
+ - Updated the example configuration with current Quad9 source URLs.
+ - The generate-domains-blocklist script now handles poor network conditions more gracefully.
+ - Improved handling of DNS64 trampoline queries to prevent potential issues.
 
-### Removed
-- `dct-at1` resolver (ceased).
-- `dnscrypt.ca-1` resolver (ceased).
-- `dnscrypt.ca-2` resolver (ceased).
+## 2.1.12
+### Upstream
+ - A new Weighted Power of Two (wp2) load balancing strategy has been implemented as the default, providing improved distribution across resolvers.
+ - An optional Prometheus metrics endpoint has been added for monitoring and observability.
+ - Memory usage for the cache has been reduced.
+ - The monitoring dashboard has received significant improvements including better security, performance optimizations, WebSocket rate limiting, and HTTP caching headers.
+ - The monitoring UI has been refined with stable sorting to prevent flickering, query type limitations, and improved scrolling behavior.
+ - Additional records in queries are now properly removed before forwarding.
+ - The simple view UI has been removed as it provided limited utility.
+
+## 2.1.11
+### Upstream
+ - Updated a dependency to fix a bug causing the cache to crash.
+
+## 2.1.10
+### Upstream
+ - A live web-based monitoring UI has been added, allowing you to monitor DNS query activity and performance metrics through an interactive dashboard.
+ - Hot-reloading of configuration files has been implemented, allowing you to modify filtering rules and other configurations without restarting the proxy. Simply edit a configuration file (like blocked-names.txt) and changes are applied instantaneously.
+ - HTTP/3 probing is now supported via the http3_probe option, which will try HTTP/3 first for DoH servers, even if they don't advertise support via Alt-Svc.
+ - Several race conditions have been fixed.
+ - Dependencies have been updated.
+ - DHCP DNS detector instances have been reduced to improve performance.
+ - Tor isolation for dnscrypt-proxy has been documented to enhance privacy.
+ - The default example configuration file has been improved for clarity and usability.
+ - The cache lock contention has been reduced to improve performance under high load.
+ - generate-domains-blocklist: added parallel downloading of block lists for significantly improved performance.
+
+## 2.1.8
+### Upstream
+ - Dependencies have been updated, notably the QUIC implementation, which could be vulnerable to denial-of-service attacks.
+ - In forwarding rules, the target can now optionally include a non-standard DNS port number. The port number is also now optional when using IPv6.
+ - An annoying log message related to permissions on Windows has been suppressed.
+ - Resolver IP addresses can now be refreshed more frequently. Additionally, jitter has been introduced to prevent all resolvers from being refreshed simultaneously. Further changes have been implemented to mitigate issues arising from multiple concurrent attempts to resolve a resolver's IP address.
+ - An empty value for "tls_cipher_suite" is now equivalent to leaving the property undefined. Previously, it disabled all TLS cipher suites, which had little practical justification.
+ - In forwarding rules, an optional *. prefix is now accepted.
+
+## 2.1.7
+### Upstream
+ - This version reintroduces support for XSalsa20 enryption in DNSCrypt, which was removed in 2.1.6. Unfortunately, a bunch of servers still only support that encryption system.
+ - A check for lying resolvers was added for DNSCrypt, similar to the one that was already present for DoH and ODoH.
+ - Binary packages for Windows/ARM are now available, albeit not in MSI format yet.
+
+## 2.1.6
+### Upstream
+ - Forwarding: in the list of servers for a zone, the $BOOTSTRAP keyword can be included as a shortcut to forward to the bootstrap servers. And the $DHCP keyword can be included to forward to the DNS resolvers provided by the local DHCP server. Based on work by YX Hao, thanks! DHCP forwarding should be considered experimental and may not work on all operating systems. A rule for a zone can mix and match multiple forwarder types, such as 10.0.0.1,10.0.0.254,$DHCP,192.168.1.1,$BOOTSTRAP. Note that this is not implemented for captive portals yet.
+ - Lying resolvers are now skipped, instead of just printing an error. This doesn't apply to captive portal and forwarding entries, which are the only reasonable use case for lying resolvers.
+ - Support for XSalsa20 in DNSCrypt has been removed. This was not documented, and was supserseded by XChaCha20 in 2016.
+ - Source files are now fetched with compression.
+ - DNS64: compatibility has been improved.
+ - Forwarding: the root domain (.) can now be forwarded.
+ - The ARC caching algorithm has been replaced by the SIEVE algorithm.
+ - Properties of multiple servers are now updated simultaneously. The concurrency level can be adjusted with the new cert_refresh_concurrency setting. Contributed by YX Hao.
+ - MSI packages for DNSCrypt can now easily be built.
+ - New command-line flag: -include-relays to include relays in -list and -list-all.
+ - Support for DNS extended error codes has been added.
+ - Documentation updates, bug fixes, dependency updates.
 
 ## 2.1.5
 ### Upstream
