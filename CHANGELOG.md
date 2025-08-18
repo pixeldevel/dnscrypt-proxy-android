@@ -1,21 +1,18 @@
 # Changelog
 
 ### Changed
- - Live web-based monitoring UI -ENABLED- Config file = config/dnscrypt-proxy.toml
-# Enable the monitoring UI
-enabled = true
-# Listen address for the monitoring UI
-listen_address = "127.0.0.1:8080"
-# Optional username and password for basic authentication
-# To disable authentication, set username to an empty string: username = ""
-# If both username and password are empty, no authentication is required
-username = "admin"
-password = "changeme"
-# Privacy level for the monitoring UI
-# 0: show all details including client IPs
-# 1: anonymize client IPs (default)
-# 2: aggregate data only (no individual queries or domains shown)
-privacy_level = 1
+ - Live web-based monitoring UI -ENABLED Config file = config/dnscrypt-proxy.toml
+Optional username and password for basic authentication
+To disable authentication, set username to an empty string: username = ""
+If both username and password are empty, no authentication is required
+ listen_address = "127.0.0.1:8080"
+ username = "admin"
+ password = "changeme"
+--- Privacy level for the monitoring UI---
+0: show all details including client IPs
+1: anonymize client IPs (default)
+2: aggregate data only (no individual queries or domains shown)
+ privacy_level = 1
 
 ## 2.1.13
 ### Upstream
