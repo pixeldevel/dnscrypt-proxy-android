@@ -2,9 +2,9 @@
 
 ### Changed
  - Live web-based monitoring UI -ENABLED Config file = config/dnscrypt-proxy.toml
-Optional username and password for basic authentication
-To disable authentication, set username to an empty string: username = ""
-If both username and password are empty, no authentication is required
+ - Optional username and password for basic authentication
+ - To disable authentication, set username to an empty string: username = ""
+ - If both username and password are empty, no authentication is required
 
  listen_address = "127.0.0.1:8080"
  username = "admin"
