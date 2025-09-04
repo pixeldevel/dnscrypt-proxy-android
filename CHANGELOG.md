@@ -18,6 +18,12 @@
 
  privacy_level = 1
 
+## 2.1.14
+### Upstream
+ - Added support for client IP address encryption in logs using IPCrypt. Three algorithms are supported: deterministic, non-deterministic with 8-byte tweak, and extended non-deterministic with 16-byte tweak.
+ - Enhanced pattern rule documentation with better examples.
+ - Fixed an issue where nil client addresses could cause crashes.
+
 ## 2.1.13
 ### Upstream
  - Fixed race conditions in WebSocket handling for the monitoring dashboard, improving stability and preventing potential crashes.
