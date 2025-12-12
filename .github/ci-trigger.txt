@@ -1,3 +1,0 @@
-Triggered by Copilot to start Android CI (Debug APK) workflow.
-Timestamp: 2025-09-09T05:33:59Z
-Ref: chat approval by @pixeldevel
